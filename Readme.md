@@ -21,4 +21,7 @@ Only core packages or installed (with i3 as a wm).
 You could delete some (like spice or qemu-guest-agent) but as i said, those were proxmox install scripts and i needed spice. But it should not come as a bloated distribution with 999999 packages pre-installed
 
 
+# Encryption
 
+By default it does not work, since it needs a luks_password file in the same directory as the install scripts.
+You must add them, it was not include to avoid leaking passwords by default, that can't be easily changed (not as easy as  a passwd command)
