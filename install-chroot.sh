@@ -2,7 +2,15 @@
 
 set -e
 set -x
-
+if [ -e /dev/vda ]; then
+  device=/dev/vda
+elif [ -e /dev/sda ]; then
+  device=/dev/sda
+else
+  echo "ERROR: There is no disk available for installation" >&2
+  exit 1
+fi
+export device
 ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
 
 #maybe change the hostname?
@@ -28,7 +36,14 @@ chmod 440 /etc/sudoers.d/mbahal
 mkdir -p /etc/systemd/network
 ln -sf /dev/null /etc/systemd/network/99-default.link
 
-#eanble sshd to have ssh access
+echo "Section "InputClass"
+        Identifier "Keyboard Layout"
+        MatchIsKeyboard "on"
+        Option "XkbLayout" "fr"
+        Option "XkbLayout" "latin9"
+EndSection " > /etc/X11/xorg.conf.d/00-keyboard.conf
+
+#enable sshd to have ssh access
 systemctl enable sshd
 #enable qemu-guest-agent
 systemctl enable qemu-guest-agent
@@ -39,7 +54,7 @@ mkinitcpio -p linux-lts
 sed -i '/GRUB_CMDLINE_LINUX=/d' /etc/default/grub
 sed -i 's/#GRUB_ENABLE_CRYPTODISK=y/GRUB_ENABLE_CRYPTODISK=y/' /etc/default/grub
 echo GRUB_CMDLINE_LINUX=\"cryptdevice=UUID=$(blkid -s UUID -o value /dev/mapper/archlvm-root):root root=/dev/mapper/root\" >> /etc/default/grub
-grub-install --target=i386-pc --bootloader-id=arch_grub --recheck /dev/sda
+grub-install --target=i386-pc --bootloader-id=arch_grub --recheck "${device}"
 sed -i -e 's/^GRUB_TIMEOUT=.*$/GRUB_TIMEOUT=1/' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 

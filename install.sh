@@ -29,7 +29,7 @@ vgcreate archlvm "${device}2"
 
 
 #logical volumes creation
-lvcreate -L 50G -n root archlvm
+lvcreate -L 35%FREE -n root archlvm
 lvcreate -L 2G -n swap archlvm
 lvcreate -L 1G -n tmp archlvm
 lvcreate -l 100%FREE -n home archlvm
@@ -63,12 +63,6 @@ echo 'all' | pacstrap /mnt base base-devel lvm2 cryptsetup xfsprogs linux-lts li
 
 mkdir -p /etc/X11/xorg.conf.d/
 
-echo "Section "InputClass"
-        Identifier "Keyboard Layout"
-        MatchIsKeyboard "on"
-        Option "XkbLayout" "fr"
-        Option "XkbLayout" "latin9"
-EndSection " > /etc/X11/xorg.conf.d/00-keyboard.conf
 
 
 genfstab -Up /mnt >> /mnt/etc/fstab
