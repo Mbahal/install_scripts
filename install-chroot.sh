@@ -36,11 +36,11 @@ chmod 440 /etc/sudoers.d/mbahal
 mkdir -p /etc/systemd/network
 ln -sf /dev/null /etc/systemd/network/99-default.link
 
-echo "Section "InputClass"
-        Identifier "Keyboard Layout"
-        MatchIsKeyboard "on"
-        Option "XkbLayout" "fr"
-        Option "XkbLayout" "latin9"
+echo "Section \"InputClass\"
+        Identifier \"Keyboard Layout\"
+        MatchIsKeyboard \"on\"
+        Option \"XkbLayout\" \"fr\"
+        Option \"XkbLayout\" \"latin9\"
 EndSection " > /etc/X11/xorg.conf.d/00-keyboard.conf
 
 #enable sshd to have ssh access
