@@ -29,7 +29,7 @@ vgcreate archlvm "${device}2"
 
 
 #logical volumes creation
-lvcreate -L 35%FREE -n root archlvm
+lvcreate -l 35%FREE -n root archlvm
 lvcreate -L 2G -n swap archlvm
 lvcreate -L 1G -n tmp archlvm
 lvcreate -l 100%FREE -n home archlvm
