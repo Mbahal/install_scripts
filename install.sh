@@ -17,9 +17,9 @@ export device
 #let 1 MiB so that the 34 first sectors are let alone since a disk need them i can't remember why but fails otherwise
 parted --script "${device}" \
 	mklabel msdos \
-	mkpart primary ext4 1MiB 100MiB \
+	mkpart primary ext4 1000MiB 100MiB \
 	set 1 boot on \
-	mkpart primary ext4 100MiB 100% \
+	mkpart primary ext4 1000MiB 100% \
 	q
 #create the physical volume
 pvcreate "${device}2"
@@ -30,8 +30,8 @@ vgcreate archlvm "${device}2"
 
 #logical volumes creation
 lvcreate -l 35%FREE -n root archlvm
-lvcreate -L 2G -n swap archlvm
-lvcreate -L 1G -n tmp archlvm
+lvcreate -L 4G -n swap archlvm
+lvcreate -L 3G -n tmp archlvm
 lvcreate -l 100%FREE -n home archlvm
 
 
