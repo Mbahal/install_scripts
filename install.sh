@@ -66,4 +66,5 @@ mkdir -p /etc/X11/xorg.conf.d/
 
 
 genfstab -Up /mnt >> /mnt/etc/fstab
+cp install-chroot.sh /mnt
 arch-chroot /mnt /bin/bash
