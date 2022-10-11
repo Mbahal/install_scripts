@@ -59,7 +59,7 @@ sync
 sync
 # Install base packages not all aare mandatory but none are not usefull imo
 
-echo 'all' | pacstrap /mnt base base-devel lvm2 cryptsetup xfsprogs linux-lts linux-lts-headers linux-firmware zip unzip p7zip vim alsa-utils dosfstools lsb-release exfat-utils bash-completion git grub efibootmgr openssh sudo qemu-guest-agent networkmanager i3-gaps i3lock i3blocks i3status rofi lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings xorg-{server,xinit,apps} xdg-user-dirs xf86-video-nouveau mesa intel-ucode xorg-fonts-type1 freetype2 gsfonts sdl_ttf ttf-{dejavu,bitstream-vera,liberation} noto-fonts-{cjk,emoji,extra} tmux xterm xf86-video-vesa xf86-video-fbdev xf86-video-qxl
+echo 'all' | pacstrap /mnt base base-devel lvm2 cryptsetup xfsprogs linux-lts linux-lts-headers linux-firmware zip unzip p7zip vim alsa-utils dosfstools lsb-release exfat-utils bash-completion git grub efibootmgr openssh sudo qemu-guest-agent networkmanager i3-gaps i3lock i3blocks i3status rofi lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings xorg-{server,xinit,apps} xdg-user-dirs xf86-video-nouveau mesa intel-ucode xorg-fonts-type1 freetype2 gsfonts sdl_ttf ttf-{dejavu,bitstream-vera,liberation} noto-fonts-{cjk,emoji,extra} tmux xterm xf86-video-vesa xf86-video-fbdev xf86-video-qxl pavucontrol pulseaudio
 
 mkdir -p /etc/X11/xorg.conf.d/
 

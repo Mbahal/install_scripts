@@ -1,2 +1,9 @@
-xterm*background: black
-xterm*foreground: lightgray
+#define bg #0d2221
+#define fg lightgray
+
+xterm*background: bg
+xterm*foreground: fg
+xterm*visualBell: False
+xterm*VT100.Translations: #override \
+	Ctrl Shift <Key>V:	insert-selection(CLIPBOARD) \n\
+	Ctrl Shift <Key>C:	copy-selection(CLIPBOARD)
